@@ -1,8 +1,9 @@
+
 <?php
-include 'db_config.php';
+require ('db_config.php');
 
 // Fetch data from the database
-$sql = "SELECT staff_id, staff_name FROM staff";
+$sql = "SELECT Staff_ID, Staff_Name,Staff_contactNo,Staff_Email,Staff_Address,Staff_Password FROM staff";
 $result = $mysqli->query($sql);
 
 $staffList = array();
@@ -22,15 +23,20 @@ $mysqli->close();
 <!-- Display the staff list as an HTML table -->
 <table border="1">
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <!-- Add more columns as needed -->
+      
     </tr>
     <?php foreach ($staffList as $staff): ?>
         <tr>
-            <td><?php echo $staff['staff_id']; ?></td>
-            <td><?php echo $staff['staff_name']; ?></td>
+            <td><?php echo $staff['Staff_ID']; ?></td>
+            <td><?php echo $staff['Staff_Name']; ?></td>
+            <td><?php echo $staff['Staff_contactNo']; ?></td>
+            <td><?php echo $staff['Staff_Email']; ?></td>
+            <td><?php echo $staff['Staff_Address']; ?></td>
+            <td><?php echo $staff['Staff_Password']; ?></td>
             <!-- Add more cells as needed -->
         </tr>
     <?php endforeach; ?>
 </table>
+
+
+
