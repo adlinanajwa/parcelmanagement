@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Tables - SB Admin</title>
+        <title>Utem Parcel Management System</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -16,8 +16,30 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            margin-top: 20px; /* Add spacing above the table */
+            
         }
+        th, td {
+            text-align: left;
+            padding: 8px; /* Add padding to the cells */
+            border: 3px solid #dddddd; /* Add a thicker border to data cells */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Add a background color to header cells */
+        }
+
+        /* Add some styles for the buttons */
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .edit-button,
+        .remove-button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    
 
         th, td {
             text-align: left;
@@ -48,7 +70,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    
+                    <li><a class="dropdown-item" href="#!">Profile</a></li>
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="#!">Logout</a></li>
@@ -74,9 +98,10 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="viewstafftable.php">View staff</a>
-                                    <a class="nav-link" href="staffupdate.php">Update Staff</a>
-                                    <a class="nav-link" href="staffremove.php">Remove staff</a>
+                                <a class="nav-link" href="registerstaff.php">Register Staff</a>
+                                    
+                                <a class="nav-link" href="viewstafftable.php">List of staff</a>
+                                    
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -117,7 +142,7 @@
                             </a>
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
+                                Report
                             </a>
                         </div>
                     </div>
@@ -130,10 +155,10 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Tables</h1>
+                        <h1 class="mt-4">List of Staff</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Tables</li>
+                            <li class="breadcrumb-item active">List of Staff</li>
                         </ol>
                         <div class="card mb-4">
                            
@@ -153,6 +178,7 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Password</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     
@@ -162,6 +188,7 @@
 
 include ("../datalayer/db_config.php");
 include ("../datalayer/staffview.php");
+
 
 ?>
 

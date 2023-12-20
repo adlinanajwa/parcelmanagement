@@ -58,7 +58,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="viewstafftable.php">View staff</a>
-                                    <a class="nav-link" href="staffupdate.php">Update Staff</a>
+                                    <a class="nav-link" href="updatestaff.php">Update Staff</a>
                                     <a class="nav-link" href="staffremove.php">Remove staff</a>
                                     
                                 </nav>

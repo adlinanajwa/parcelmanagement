@@ -26,13 +26,20 @@ $mysqli->close();
       
     </tr>
     <?php foreach ($staffList as $staff): ?>
-        <tr>
+        
             <td><?php echo $staff['Staff_ID']; ?></td>
             <td><?php echo $staff['Staff_Name']; ?></td>
             <td><?php echo $staff['Staff_contactNo']; ?></td>
             <td><?php echo $staff['Staff_Email']; ?></td>
             <td><?php echo $staff['Staff_Address']; ?></td>
             <td><?php echo $staff['Staff_Password']; ?></td>
+            <td class='action-buttons'>
+            
+            <a href='updatestaff.php?id={$staff['ID']}' class='edit-button btn btn-primary'>Edit</a>
+            <button class='remove-button btn btn-danger' data-id='{$staff['ID']}'>Remove</button>
+          </td>
+          </td>
+          
             <!-- Add more cells as needed -->
         </tr>
     <?php endforeach; ?>
