@@ -35,9 +35,9 @@ $mysqli->close();
             <td><?php echo $staff['Staff_Password']; ?></td>
             <td class='action-buttons'>
             
-            <a href='updatestaff.php?id={$staff['ID']}' class='edit-button btn btn-primary'>Edit</a>
-            <button class='remove-button btn btn-danger' data-id='{$staff['ID']}'>Remove</button>
-          </td>
+            <a href='updatestaff.php?id={$staff['ID']}' class='edit-button btn btn-primary'>Update</a>
+            <a href='javascript:void(0);' class='delete-button btn btn-danger' onclick='confirmDelete(<?php echo $staff['Staff_ID']; ?>)'>Delete</a>
+           
           </td>
           
             <!-- Add more cells as needed -->

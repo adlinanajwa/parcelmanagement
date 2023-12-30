@@ -7,26 +7,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Utem Parcel Management System</title>
+        <title>UTeM Parcel Management</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <title>Staff List</title>
     <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            
-        }
-        th, td {
-            text-align: left;
-            padding: 8px; /* Add padding to the cells */
-            border: 3px solid #dddddd; /* Add a thicker border to data cells */
-        }
+       table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-        th {
-            background-color: #f2f2f2; /* Add a background color to header cells */
-        }
+th, td {
+    text-align: left;
+    padding: 8px; /* Add padding to the cells */
+    border: 3px solid #dddddd; /* Add a thicker border to data cells */
+    border-bottom: none; /* Remove the bottom border */
+}
+
+th {
+    background-color: #f2f2f2; /* Add a background color to header cells */
+    border-top: none; /* Remove the top border for header cells */
+}
+
 
         /* Add some styles for the buttons */
         .action-buttons {
@@ -55,7 +58,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">ADMIN NAME</a>
+            <a class="navbar-brand ps-3" href="index.php">UTeM Parcel Management</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -86,7 +89,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -157,7 +160,7 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">List of Staff</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                             <li class="breadcrumb-item active">List of Staff</li>
                         </ol>
                         <div class="card mb-4">
@@ -188,14 +191,8 @@
 
 include ("../datalayer/db_config.php");
 include ("../datalayer/staffview.php");
-
-
 ?>
 
-
-
-
-                            
 
 
                                     </tbody>
@@ -204,6 +201,15 @@ include ("../datalayer/staffview.php");
                         </div>
                     </div>
                 </main>
+                <script>
+        function confirmDelete(staffID) {
+            var confirmation = confirm("Are you sure you want to delete this staff?");
+            
+            if (confirmation) {
+                window.location.href = 'deletestaff.php?id=' + staffID;
+            }
+        }
+    </script>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
@@ -222,5 +228,6 @@ include ("../datalayer/staffview.php");
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+       
     </body>
 </html>
