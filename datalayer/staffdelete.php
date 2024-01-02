@@ -1,28 +1,23 @@
 <?php
 require('db_config.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Collect form data
-    $staffID = $_POST['staffID'];
+if (isset($_GET['id'])) {
+    $staffIDToDelete = $_GET['id'];
 
-    // Perform the staff deletion
+    // Perform the delete operation here (use prepared statements to prevent SQL injection)
     $sql = "DELETE FROM staff WHERE Staff_ID = ?";
-    
-    // Use prepared statement
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $staffID);
+    $stmt->bind_param("i", $staffIDToDelete);
 
-    // Execute the statement
-    $stmt->execute();
+    if ($stmt->execute()) {
+        echo "Staff deleted successfully.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
 
-    // Close the statement
     $stmt->close();
-
-    // Close the database connection
     $mysqli->close();
+} else {
+    echo "Invalid request.";
 }
-
-// Redirect to a page after deletion (e.g., staff list page)
-header("Location: viewstafftable.php");
-exit();
 ?>

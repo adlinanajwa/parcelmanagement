@@ -1,26 +1,57 @@
 <?php
-require('db_config.php');
+// Include the database configuration file
+require('../datalayer/db_config.php');
 
-if (isset($_GET['id'])) {
-    $staffID = $_GET['id'];
+// Fetch available staff IDs from the database
+$sql = "SELECT Staff_ID FROM staff";
+$result = $mysqli->query($sql);
 
-    // Delete staff details from the database
-    $sql = "DELETE FROM staff WHERE Staff_ID = $staffID";
+// Store the staff IDs in an array
+$staffIDs = array();
+while ($row = $result->fetch_assoc()) {
+    $staffIDs[] = $row['Staff_ID'];
+}
 
-    $result = $mysqli->query($sql);
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['deleteStaff'])) {
+        $selectedStaffID = $_POST['staffID'];
 
-    if (!$result) {
-        die("Error: " . $mysqli->error);
+        // Perform the delete operation here (use prepared statements to prevent SQL injection)
+        $deleteSql = "DELETE FROM staff WHERE Staff_ID = ?";
+        $deleteStmt = $mysqli->prepare($deleteSql);
+        $deleteStmt->bind_param("i", $selectedStaffID);
+
+        if ($deleteStmt->execute()) {
+            echo "Staff with ID $selectedStaffID deleted successfully.";
+        } else {
+            echo "Error: " . $deleteStmt->error;
+        }
+
+        $deleteStmt->close();
     }
-
-    // Close the database connection
-    $mysqli->close();
-
-    // Redirect back to the staff table view after deletion
-    header('Location: viewstafftable.php');
-    exit();
-} else {
-    // Handle the case when staff ID is not provided
-    echo "Invalid request!";
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Staff</title>
+</head>
+<body>
+    <h2>Delete Staff</h2>
+    
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <label for="staffID">Select Staff ID to Delete:</label>
+        <select name="staffID" required>
+            <?php foreach ($staffIDs as $id): ?>
+                <option value="<?php echo $id; ?>"><?php echo $id; ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <button type="submit" name="deleteStaff">Delete</button>
+    </form>
+</body>
+</html>

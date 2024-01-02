@@ -3,7 +3,7 @@
 require ('db_config.php');
 
 // Fetch data from the database
-$sql = "SELECT Staff_ID, Staff_Name,Staff_contactNo,Staff_Email,Staff_Address,Staff_Password FROM staff";
+$sql = "SELECT Staff_ID, Staff_Name,Staff_contactNo,Staff_Email,Staff_Password FROM staff";
 $result = $mysqli->query($sql);
 
 $staffList = array();
@@ -31,13 +31,11 @@ $mysqli->close();
             <td><?php echo $staff['Staff_Name']; ?></td>
             <td><?php echo $staff['Staff_contactNo']; ?></td>
             <td><?php echo $staff['Staff_Email']; ?></td>
-            <td><?php echo $staff['Staff_Address']; ?></td>
             <td><?php echo $staff['Staff_Password']; ?></td>
             <td class='action-buttons'>
             
-            <a href='updatestaff.php?id={$staff['ID']}' class='edit-button btn btn-primary'>Update</a>
-            <a href='javascript:void(0);' class='delete-button btn btn-danger' onclick='confirmDelete(<?php echo $staff['Staff_ID']; ?>)'>Delete</a>
-           
+            <a href='updatestaff.php?id={$staff['Staff_ID']}' class='edit-button btn btn-primary'>Update</a>
+            <a href='deletestaff.php?id={$staff['Staff_ID']}' class='edit-button btn btn-primary'>Delete</a>
           </td>
           
             <!-- Add more cells as needed -->

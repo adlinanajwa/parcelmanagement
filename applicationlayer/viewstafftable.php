@@ -179,7 +179,7 @@ th {
                                             <th>Name</th>
                                             <th>Contact Number</th>
                                             <th>Email</th>
-                                            <th>Address</th>
+                                           
                                             <th>Password</th>
                                             <th>Actions</th>
                                         </tr>
@@ -201,15 +201,6 @@ include ("../datalayer/staffview.php");
                         </div>
                     </div>
                 </main>
-                <script>
-        function confirmDelete(staffID) {
-            var confirmation = confirm("Are you sure you want to delete this staff?");
-            
-            if (confirmation) {
-                window.location.href = 'deletestaff.php?id=' + staffID;
-            }
-        }
-    </script>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
